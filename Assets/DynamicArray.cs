@@ -7,6 +7,10 @@ public class DynamicArray
     //GameObject array resizing
     public static GameObject[] AddGameObjectToArray(GameObject[] PrevArray, GameObject NewObj)
     {
+        if (PrevArray == null)
+        {
+            PrevArray = new GameObject[0];
+        }
         GameObject[] Temp = PrevArray;
         GameObject[] NewArray = new GameObject[Temp.Length + 1];
         for (int i = 0; i < NewArray.Length; i++)
@@ -45,7 +49,7 @@ public class DynamicArray
     public static GameObject[] AddGameObjectArrayToArray(GameObject[] PrevArray, GameObject[] NewObj)
     {
         GameObject[] Temp = PrevArray;
-        GameObject[] NewArray = new GameObject[Temp.Length + 1];
+        GameObject[] NewArray = new GameObject[Temp.Length + NewObj.Length];
         for (int i = 0, i_ = 0; i < NewArray.Length; i++)
         {
             if (i < Temp.Length)
@@ -121,7 +125,7 @@ public class DynamicArray
     }
     public static float[] AddFloatArrayToArray(float[] Prev, float[] NewInput)
     {
-        float[] NewArray = new float[Prev.Length + 1];
+        float[] NewArray = new float[Prev.Length + NewInput.Length];
         for (int i = 0, i_ = 0; i < NewArray.Length; i++)
         {
             if (i < Prev.Length)
@@ -161,6 +165,10 @@ public class DynamicArray
     }
     public static int[] AddIntToArray(int[] Prev, int NewInt)
     {
+        if (Prev == null)
+        {
+            Prev = new int[0];
+        }
         int[] NewArray = new int[Prev.Length + 1];
         for (int i = 0; i < NewArray.Length; i++)
         {
@@ -198,7 +206,7 @@ public class DynamicArray
 
     public static int[] AddIntArrayToArray(int[] Prev, int[] NewInput)
     {
-        int[] NewArray = new int[Prev.Length + 1];
+        int[] NewArray = new int[Prev.Length + NewInput.Length];
         for (int i = 0, i_ = 0; i < NewArray.Length; i++)
         {
             if (i < Prev.Length)
@@ -274,7 +282,7 @@ public class DynamicArray
     }
     public static Vector2[] AddVector2ArrayToArray(Vector2[] Prev, Vector2[] NewInput)
     {
-        Vector2[] NewArray = new Vector2[Prev.Length + 1];
+        Vector2[] NewArray = new Vector2[Prev.Length + NewInput.Length];
         for (int i = 0, i_ = 0; i < NewArray.Length; i++)
         {
             if (i < Prev.Length)
@@ -300,7 +308,7 @@ public class DynamicArray
         }
         return NewArray;
     }
-    public static Vector2[] RemoveVector2ByIndex (Vector2[] Prev, int Remove)
+    public static Vector2[] RemoveVector2ByIndex(Vector2[] Prev, int Remove)
     {
         Vector2[] NewArray = new Vector2[0];
         for (int i = 0; i < Prev.Length; i++)
@@ -333,15 +341,15 @@ public class DynamicArray
         Vector3[] NewArray = new Vector3[Prev.Length + 1];
         for (int i = 0; i < NewArray.Length; i++)
         {
-            if(i < Index)
+            if (i < Index)
             {
                 NewArray[i] = Prev[i];
             }
-            if(i == Index)
+            if (i == Index)
             {
                 NewArray[i] = NewInput;
             }
-            if(i > Index)
+            if (i > Index)
             {
                 NewArray[i] = Prev[i - 1];
             }
@@ -350,7 +358,7 @@ public class DynamicArray
     }
     public static Vector3[] AddVector3ArrayToArray(Vector3[] Prev, Vector3[] NewInput)
     {
-        Vector3[] NewArray = new Vector3[Prev.Length + 1];
+        Vector3[] NewArray = new Vector3[Prev.Length + NewInput.Length];
         for (int i = 0, i_ = 0; i < NewArray.Length; i++)
         {
             if (i < Prev.Length)
@@ -427,7 +435,7 @@ public class DynamicArray
     }
     public static Quaternion[] AddQuaternionArrayToArray(Quaternion[] Prev, Quaternion[] NewInput)
     {
-        Quaternion[] NewArray = new Quaternion[Prev.Length + 1];
+        Quaternion[] NewArray = new Quaternion[Prev.Length + NewInput.Length];
         for (int i = 0, i_ = 0; i < NewArray.Length; i++)
         {
             if (i < Prev.Length)
@@ -503,7 +511,7 @@ public class DynamicArray
     }
     public static string[] AddStringArrayToArray(string[] Prev, string[] NewInput)
     {
-        string[] NewArray = new string[Prev.Length + 1];
+        string[] NewArray = new string[Prev.Length + NewInput.Length];
         for (int i = 0, i_ = 0; i < NewArray.Length; i++)
         {
             if (i < Prev.Length)
@@ -545,9 +553,9 @@ public class DynamicArray
     public static MeshFilter[] AddMeshFilterToArray(MeshFilter[] Prev, MeshFilter NewInput)
     {
         MeshFilter[] NewArray = new MeshFilter[Prev.Length + 1];
-        for (int i = 0; i<NewArray.Length; i++)
+        for (int i = 0; i < NewArray.Length; i++)
         {
-            if (i<Prev.Length)
+            if (i < Prev.Length)
             {
                 NewArray[i] = Prev[i];
             }
@@ -559,65 +567,65 @@ public class DynamicArray
         return NewArray;
     }
     public static MeshFilter[] AddMeshFilterToArrayAtIndex(MeshFilter[] Prev, MeshFilter NewInput, int Index)
-{
-        MeshFilter[] NewArray = new MeshFilter[Prev.Length + 1];
-    for (int i = 0; i < NewArray.Length; i++)
     {
-        if (i < Index)
-        {
-            NewArray[i] = Prev[i];
-        }
-        if (i == Index)
-        {
-            NewArray[i] = NewInput;
-        }
-        if (i > Index)
-        {
-            NewArray[i] = Prev[i - 1];
-        }
-    }
-    return NewArray;
-}
-public static MeshFilter[] AddMeshFilterArrayToArray(MeshFilter[] Prev, MeshFilter[] NewInput)
-{
         MeshFilter[] NewArray = new MeshFilter[Prev.Length + 1];
-    for (int i = 0, i_ = 0; i < NewArray.Length; i++)
-    {
-        if (i < Prev.Length)
+        for (int i = 0; i < NewArray.Length; i++)
         {
-            NewArray[i] = Prev[i];
+            if (i < Index)
+            {
+                NewArray[i] = Prev[i];
+            }
+            if (i == Index)
+            {
+                NewArray[i] = NewInput;
+            }
+            if (i > Index)
+            {
+                NewArray[i] = Prev[i - 1];
+            }
         }
-        else
-        {
-            NewArray[i] = NewInput[i_++];
-        }
+        return NewArray;
     }
-    return NewArray;
-}
-public static MeshFilter[] CleanMeshFilterArray(MeshFilter[] Prev, MeshFilter RemoveValue)
-{
+    public static MeshFilter[] AddMeshFilterArrayToArray(MeshFilter[] Prev, MeshFilter[] NewInput)
+    {
+        MeshFilter[] NewArray = new MeshFilter[Prev.Length + NewInput.Length];
+        for (int i = 0, i_ = 0; i < NewArray.Length; i++)
+        {
+            if (i < Prev.Length)
+            {
+                NewArray[i] = Prev[i];
+            }
+            else
+            {
+                NewArray[i] = NewInput[i_++];
+            }
+        }
+        return NewArray;
+    }
+    public static MeshFilter[] CleanMeshFilterArray(MeshFilter[] Prev, MeshFilter RemoveValue)
+    {
         MeshFilter[] NewArray = new MeshFilter[0];
-    for (int i = 0; i < Prev.Length; i++)
-    {
-        if (Prev[i] != RemoveValue)
+        for (int i = 0; i < Prev.Length; i++)
         {
-            NewArray = AddMeshFilterToArray(NewArray, Prev[i]);
+            if (Prev[i] != RemoveValue)
+            {
+                NewArray = AddMeshFilterToArray(NewArray, Prev[i]);
+            }
         }
+        return NewArray;
     }
-    return NewArray;
-}
-public static MeshFilter[] RemoveMeshFilterByIndex(MeshFilter[] Prev, int Remove)
-{
-    MeshFilter[] NewArray = new MeshFilter[0];
-    for (int i = 0; i < Prev.Length; i++)
+    public static MeshFilter[] RemoveMeshFilterByIndex(MeshFilter[] Prev, int Remove)
     {
-        if (i != Remove)
+        MeshFilter[] NewArray = new MeshFilter[0];
+        for (int i = 0; i < Prev.Length; i++)
         {
-            NewArray = AddMeshFilterToArray(NewArray, Prev[i]);
+            if (i != Remove)
+            {
+                NewArray = AddMeshFilterToArray(NewArray, Prev[i]);
+            }
         }
+        return NewArray;
     }
-    return NewArray;
-}
     /// Material
     public static Material[] AddMaterialToArray(Material[] Prev, Material NewInput)
     {
@@ -657,7 +665,7 @@ public static MeshFilter[] RemoveMeshFilterByIndex(MeshFilter[] Prev, int Remove
     }
     public static Material[] AddMaterialArrayToArray(Material[] Prev, Material[] NewInput)
     {
-        Material[] NewArray = new Material[Prev.Length + 1];
+        Material[] NewArray = new Material[Prev.Length + NewInput.Length];
         for (int i = 0, i_ = 0; i < NewArray.Length; i++)
         {
             if (i < Prev.Length)
@@ -735,7 +743,7 @@ public static MeshFilter[] RemoveMeshFilterByIndex(MeshFilter[] Prev, int Remove
     }
     public static MeshRenderer[] AddMeshRendererArrayToArray(MeshRenderer[] Prev, MeshRenderer[] NewInput)
     {
-        MeshRenderer[] NewArray = new MeshRenderer[Prev.Length + 1];
+        MeshRenderer[] NewArray = new MeshRenderer[Prev.Length + NewInput.Length];
         for (int i = 0, i_ = 0; i < NewArray.Length; i++)
         {
             if (i < Prev.Length)
